@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}
+    index
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+
+
+    <form action="" class="table_form" method="post">
+    {{form.hidden_tag()}}
+
+        {% if form.errors %}
+       <h3 class="error">Помилка Валідації</h3>
+        {% endif %}
+        <h4>Заповніть таблицю</h4>
+        <div class="form-group">
+            <label for="name">Ім'я:</label>
+            {{ form.name(class="form-control") }}
+            {% for error in form.errors.name %}
+            <span style="color: red;">[{{error}}]</span>
+            {% endfor %}<br>
+
+        </div>
+        <div class="form-group">
+            <label for="lastname">Прізвище:</label>
+            {{ form.lastname(class="form-control") }}
+            {% for error in form.errors.lastname %}
+            <span style="color: red;">[{{error}}]</span>
+            {% endfor %}<br>
+        </div>
+        <div class="form-group">
+            <label for="age">Вік:</label>
+            {{ form.age(class="form-control") }}
+            {% for error in form.errors.age %}
+            <span style="color: red;">[{{error}}]</span>
+            {% endfor %}<br>
+        </div>
+        <div class="form-group">
+            <label for="txt">Комментар:</label>
+            {{ form.txt(class="form-control") }}
+            {% for error in form.errors.txt %}
+            <span style="color: red;">[{{error}}]</span>
+            {% endfor %}<br>
+        </div>
+        <div class="form-group">
+{#            <button class="btn btn-primary" type="submit">Відправити</button>#}
+            {{ form.submit(class="btn btn-primary") }}
+        </div>
+
+
+    </form>
+{% endblock %}
